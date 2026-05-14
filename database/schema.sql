@@ -61,3 +61,16 @@ CREATE TABLE Process_Order(
         FOREIGN key (T_Subject) REFERENCES Users(UID),
         FOREIGN key (T_Object) REFERENCES Users(UID)
     );
+ CREATE TABLE Products(
+        P_ID INTEGER PRIMARY KEY AUTO_INCREMENT,
+        P_name VARCHAR(256) NOT NULL,
+        P_price INT unsigned NOT NULL,
+        P_quantity INT unsigned NOT NULL,
+        P_image BLOB NOT NULL,
+        P_imagetype VARCHAR(25) NOT NULL,
+        P_owner INT NOT NULL,
+        P_store INT NOT NULL,
+        FOREIGN key (P_owner) REFERENCES Users(UID),
+        FOREIGN key (P_store) REFERENCES Stores(S_ID),
+        CONSTRAINT P_quantity_non_negative CHECK (P_quantity >= 0)
+    );
