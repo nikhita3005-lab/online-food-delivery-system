@@ -42,3 +42,11 @@ CREATE TABLE Orders(
         FOREIGN key (S_ID) REFERENCES Stores(S_ID),
         CONSTRAINT O_amount_gt_zero CHECK (O_amount > 0)
     );
+CREATE TABLE Process_Order(
+        UID INT NOT NULL,
+        O_ID INT NOT NULL,
+        PO_type INT NOT NULL,
+        PRIMARY key (UID, O_ID),
+        FOREIGN key (UID) REFERENCES Users(UID),
+        FOREIGN key (O_ID) REFERENCES Orders(O_ID)
+    );
