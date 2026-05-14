@@ -29,3 +29,16 @@ CREATE TABLE Stores(
         S_owner INT NOT NULL,
         FOREIGN key (S_owner) REFERENCES Users(UID)
     );
+CREATE TABLE Orders(
+        O_ID INTEGER PRIMARY KEY AUTO_INCREMENT,
+        O_status INT NOT NULL,
+        O_start_time datetime DEFAULT CURRENT_TIMESTAMP NOT NULL,
+        O_end_time datetime,
+        O_distance FLOAT NOT NULL,
+        O_amount INT NOT NULL,
+        O_type INT NOT NULL,
+        O_details BLOB NOT NULL,
+        S_ID INT NOT NULL,
+        FOREIGN key (S_ID) REFERENCES Stores(S_ID),
+        CONSTRAINT O_amount_gt_zero CHECK (O_amount > 0)
+    );
