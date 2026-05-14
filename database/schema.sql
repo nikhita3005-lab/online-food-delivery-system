@@ -50,3 +50,14 @@ CREATE TABLE Process_Order(
         FOREIGN key (UID) REFERENCES Users(UID),
         FOREIGN key (O_ID) REFERENCES Orders(O_ID)
     );
+ CREATE TABLE Transaction_Record(
+        T_ID INTEGER PRIMARY KEY AUTO_INCREMENT,
+        T_action INT NOT NULL,
+        T_amount INT NOT NULL,
+        is_refund INT DEFAULT 0 NOT NULL,
+        T_time datetime DEFAULT CURRENT_TIMESTAMP NOT NULL,
+        T_Subject INT,
+        T_Object INT,
+        FOREIGN key (T_Subject) REFERENCES Users(UID),
+        FOREIGN key (T_Object) REFERENCES Users(UID)
+    );
